@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Live streams</title>
+    <style>
+    .stream {
+        width: 300px;
+        height: 225px;
+        float: left;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+    </style>
+    <script src="{{ STATIC_URL }}jquery-1.10.2.min.js"></script>
+    <script src="{{ STATIC_URL }}swfobject.js"></script>
+    <script src="{{ STATIC_URL }}flowplayer/flowplayer-3.2.13.min.js"></script>
+    <script>
+        var server = '{{ server }}';
+        var streams = [
+            {% for stream in streams %}
+                '{{ stream }}{% if hls %}_hi{% endif %}',
+            {% endfor %}
+        ];
+    </script>
+    <script src="{{ STATIC_URL }}live.js"></script>
+</head>
+<body>
+{{test}}
+</body>
+</html>

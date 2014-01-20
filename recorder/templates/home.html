@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Recorder</title>
+
+    <script src="{{ STATIC_URL }}jquery-1.10.2.min.js"></script>
+    <script src="{{ STATIC_URL }}swfobject.js"></script>
+    <script>
+        var rtmp_stream = '{{ rtmp_stream }}';
+        var csrf_token = '{{ csrf_token }}';
+        var can_record = true;
+    </script>
+    <script src="{{ STATIC_URL }}recorder.js"></script>
+    <style>
+        .video {
+            float: left;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            width: 320px;
+            height: 240px;
+            border: 1px solid black;
+        }
+        .wait {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="recorder"></div><br>
+<a href="#" class="recording start">Start recording</a>
+<span class="wait">Wait 30 seconds for next record</span>
+
+<h1>Past records:</h1>
+{% for record in records %}
+    <div class="video">
+        <video id="teacher-video" width="320" height="240" controls>
+          <source src="{{ record.mp4 }}" type="video/mp4">
+          <source src="{{ record.webm }}" type="video/webm">
+        </video><br>
+        <a href="{% url "delete-video" %}" class="delete" data-dir="{{ record.dir }}">Delete</a>
+    </div>
+{% empty %}
+    No records yet
+{% endfor %}
+{% for estimate in converting %}
+    {% if estimate == 0 %}
+        Video almost converted
+    {% else %}
+        Video is converted. Estimated time {{ estimate }}
+    {% endif %}
+{% endfor %}
+</body>
+</html>
