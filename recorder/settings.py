@@ -41,5 +41,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
+RTMP_APP_NAME = 'my_videos'
+RTMP_RECORDER_NAME = 'my_recorder'
+RTMP_SERVER = 'rtmp://127.0.0.1:2935/' + RTMP_APP_NAME
 RTMP_CONTROL_HOST = 'http://127.0.0.1:8111'
-RTMP_SERVER = 'rtmp://127.0.0.1:2935/my_videos'

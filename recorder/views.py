@@ -125,7 +125,7 @@ def start(request, rtmp_stream):
     if not can_record(request):
         data = json.dumps({'success': False, 'cannot_record': True})
 
-    params = {'app': 'my_videos', 'name': rtmp_stream, 'rec': 'my_recorder'}
+    params = {'app': settings.RTMP_APP_NAME, 'name': rtmp_stream, 'rec': settings.RTMP_RECORDER_NAME}
 
     # текст ответа на запрос к nginx rtmp control будет путь к записываемому файлу
     response = requests.get(settings.RTMP_CONTROL_HOST + '/control/record/start', params=params)
