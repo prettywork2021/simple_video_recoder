@@ -121,22 +121,6 @@ def live(request):
     )
 
 
-def live_hls(request):
-    url = settings.RTMP_CONTROL_HOST + '/stat/'
-    ip_request = urllib2.Request(url)
-    root = ET.parse(urllib2.urlopen(ip_request)).getroot()
-
-    streams = []
-    for stream in root.findall('./server/application/live/stream'):
-        streams.append(stream.findall('./name')[0].text)
-
-    return render_to_response(
-        'live.html',
-        {'streams': streams, 'server': settings.HLS_RTMP_SERVER, 'hls': True},
-        RequestContext(request)
-    )
-
-
 def start(request, rtmp_stream):
     if not can_record(request):
         data = json.dumps({'success': False, 'cannot_record': True})

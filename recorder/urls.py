@@ -8,7 +8,6 @@ urlpatterns = patterns('',
     url(r'^start/(?P<rtmp_stream>[0-9]+)/$', 'recorder.views.start', name='start'),
     url(r'^stop/(?P<rtmp_stream>[0-9]+)/$', 'recorder.views.stop', name='stop'),
     url(r'^live/', 'recorder.views.live', name='live'),
-    url(r'^live-hls/', 'recorder.views.live_hls', name='live-hls'),
     url(r'^delete-video/$', 'recorder.views.delete_video', name='delete-video'),
     url(
         r'^home/config\.xml',

@@ -43,4 +43,3 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 RTMP_CONTROL_HOST = 'http://127.0.0.1:8111'
 RTMP_SERVER = 'rtmp://127.0.0.1:2935/my_videos'
-HLS_RTMP_SERVER = 'rtmp://127.0.0.1:2935/hls'
